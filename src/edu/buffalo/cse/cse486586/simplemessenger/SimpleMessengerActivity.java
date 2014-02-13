@@ -180,29 +180,22 @@ public class SimpleMessengerActivity extends Activity {
 			ServerSocket serverSocket = sockets[0];
 
 			try {
-				while (true) {
-					Socket clientSocket = serverSocket.accept();
+				Socket clientSocket = serverSocket.accept();
 
-					BufferedReader br = new BufferedReader(
-							new InputStreamReader(clientSocket.getInputStream()));
+				BufferedReader br = new BufferedReader(new InputStreamReader(
+						clientSocket.getInputStream()));
 
-					if ((msgReceived = br.readLine()) != null) {
-						publishProgress(msgReceived);
-					}
+				if ((msgReceived = br.readLine()) != null) {
+					publishProgress(msgReceived);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			/*
-			 * TODO: Fill in your server code that receives messages and passes
-			 * them to onProgressUpdate().
-			 */
 
 			return null;
 		}
-		
 
 		protected void onProgressUpdate(String... strings) {
 			/*
@@ -267,9 +260,6 @@ public class SimpleMessengerActivity extends Activity {
 
 				out.print(msgToSend);
 				out.flush();
-				/*
-				 * TODO: Fill in your client code that sends out a message.
-				 */
 				socket.close();
 			} catch (UnknownHostException e) {
 				Log.e(TAG, "ClientTask UnknownHostException");
